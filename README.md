@@ -1,5 +1,5 @@
 # EX01 Developing a Simple Webserver
-## Date: 21.04.2025
+## Date: 24.04.2025
 
 ## AIM:
 To develop a simple webserver to serve html pages and display the list of protocols in TCP/IP Protocol Suite.
@@ -37,78 +37,49 @@ Open a browser and navigate to http://127.0.0.1:8000 (or the assigned port).
 
 ## PROGRAM:
 ```
-  <!DOCTYPE html>
-  <head>
-      <title>LAPTOP CONFIGURATION</title>
-  </head>
-  
-  <body><center>
-      <h1>My laptop configuration</h1>HARISH G<h1></h1></center>
-      <table border="100px" align="center" cellpadding="10" style="background-color: rgb(76, 76, 205);" >
-      <tr style="color: black; ">
-          <th>DEVICE SPECIFICATION</th>
-          <th>DETAILS</th>
-      </tr>
-      <tr style="color: rgb(0, 0, 0); ">
-          <td>BRAND</td>
-          <td>LENOVO</td>
-      </tr>
-      <tr>
-          <td>MODEL NAME</td>
-          <td>E16 GEN 4</td>
-      </tr>
-      <tr>
-          <td>SCREEN SIZE</td>
-          <td>15.6 inches</td>
-      </tr>
-      <tr>
-          <td>COLOR</td>
-          <td>BLACK</td>
-      </tr>
-      <tr>
-          <td>RAM</td>
-          <td>16GB</td>
-      </tr>
-      <tr>
-          <td>ROM</td>
-          <td>512GB</td>
-      </tr>    
-      <tr>
-          <td>HARD DISK</td>
-          <td>CORE i5</td>
-      </tr>
-      <tr>
-          <td>GRAPHICS CARD</td>
-          <td>NVIDIA</td>
-      </tr>
-      <tr>
-          <td>SYSTEM TYPE</td>
-          <td>64 BIT-OS,X64</td>
-      </tr>
-  </table>
-  
-  </body>
-```
+from http.server import HTTPServer,BaseHTTPRequestHandler
 
-## Simplewebserver:
-```
-class myhandler(BaseHTTPRequestHandler):
+content='''
+<!doctype html>
+<html>
+    <head>
+        <title>
+            TCP/IP
+        </title>
+    </head>
+    <body bgcolor="white">
+       <center> <font color="Blue" size="100" >TCP/IP PROTOCALS<br></font></center>
+        <h2>1.Application Layer HTTP, FTP, SSH, TELNET & DNS. </h2>
+
+        <h2> 2.Transport Layer TCP, UDP.</h2>
+            
+        <h2>3.Internet Layer ICMP, IGMP, ARP, IPv4/IPv6. </h2>
+
+        <h2>4.Network Access Layer Ethernet, FDDI, X.25, Frame Relay , Token Ring. </h2>
+        
+    
+    </body>
+</html>
+'''
+
+class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
-        print("request received")
-        self.send_response(200)
-        self.send_header('content-type', 'text/html; charset=utf-8')
+        print("Get request received...")
+        self.send_response(200) 
+        self.send_header("content-type", "text/html")       
         self.end_headers()
         self.wfile.write(content.encode())
-server_address = ('',8000)
-httpd = HTTPServer(server_address,myhandler)
-print("my webserver is running...")
+
+print("This is my webserver") 
+server_address =('',8000)
+httpd = HTTPServer(server_address,MyServer)
 httpd.serve_forever()
 ```
 
 
 ## OUTPUT:
-![WhatsApp Image 2025-04-21 at 9 28 45 PM](https://github.com/user-attachments/assets/42532ed1-51af-402c-a768-9265c0a5c605)
-![Screenshot 2025-04-21 212733](https://github.com/user-attachments/assets/04641ffa-3790-470e-a5e3-ae9545085e52)
+![Screenshot 2025-04-21 172426](https://github.com/user-attachments/assets/0cda3408-ffc9-4bbb-9601-d5cd1452435c)
+
 
 
 ## RESULT:
